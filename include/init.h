@@ -1,9 +1,12 @@
-# ifndef CLI_H
-# define CLI_H
+# ifndef INIT_H
+# define INIT_H
 
 # include <iostream>
 # include <string>
+# include <filesystem>
+# include <stdio.h>
+# include <format>
 
-void agentbox_init(const std::string dir);
+int agentbox_init(const std::string dir);
 
 # endif

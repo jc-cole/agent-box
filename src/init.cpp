@@ -1,9 +1,9 @@
 #include "init.h"
-#include <format>
+
 
 namespace fs = std::filesystem;
 
-static int find_repo_root(fs::path &dir_path, std::string &repo_root_path) {
+static int find_repo_root(fs::path &dir_path, fs::path &repo_root_path) {
 
     std::string command_string = std::format(
         "git -C {} rev-parse --show-toplevel 2>&1",
@@ -42,21 +42,47 @@ int agentbox_init(const std::string dir) {
     fs::path dir_path = dir;
 
     if (!fs::exists(dir_path)) {
-        std::cout << "error: path " << dir << " does not exist\n";
+        std::cerr << "error: path " << dir << " does not exist\n";
         return -1;
     }
 
     if (!fs::is_directory(dir_path)) {
-        std::cout << "error: " << dir << " is not a directory\n";
+        std::cerr << "error: " << dir << " is not a directory\n";
         return -1;
     }
 
-    std::string repo_root_path;
+    fs::path repo_root_path;
     int status = find_repo_root(dir_path, repo_root_path);
     if (status != 0) {
-        std::cout << "error: " << dir << " is not in a git repository\n";
-        std::cout << "hint: run \"git init\" first or pass a path inside a repository\n";
+        std::cerr << "error: " << dir << " is not in a git repository\n";
+        std::cerr << "hint: run \"git init\" first or pass a path inside a repository\n";
         return -1;
+    }
+
+    std::vector<fs::path> init_dirs = {
+        ".agentbox/tasks",
+        ".agentbox/logs",
+        ".agentbox/worktrees"
+    };
+
+    std::vector<fs::path> init_files = {
+        ".agentbox/config.toml"
+    };
+
+    try {
+        for (fs::path &dir : init_dirs) {
+            fs::create_directories(dir);
+        }
+    } catch (fs::filesystem_error &e) {
+        std::cerr << "Filesystem error: " << e.what() << '\n';
+    }
+
+    try {
+        for (fs::path &f : init_files) {
+            std::ofstream(f.string());
+        }
+    } catch (fs::filesystem_error &e) {
+        std::cerr << "Filesystem error: " << e.what() << '\n';
     }
 
     return 0;

@@ -1,0 +1,12 @@
+[agents.codex]
+args = []
+cmd = 'codex'
+mode = 'host'
+
+[project]
+default_test = 'make test'
+
+[workspace]
+log_dir = '.agentbox/logs'
+task_dir = '.agentbox/tasks'
+worktree_dir = '.agentbox/worktrees'

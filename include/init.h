@@ -8,6 +8,7 @@
 # include <format>
 # include <vector>
 # include <fstream>
+# include "toml.hpp"
 
 int agentbox_init(const std::string dir);
 

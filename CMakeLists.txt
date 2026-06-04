@@ -19,7 +19,7 @@ target_include_directories(agentbox
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/include/cli
-        ${CMAKE_CURRENT_SOURCE_DIR}/external/CLI11
+        ${CMAKE_CURRENT_SOURCE_DIR}/external
 )
 
 target_compile_options(agentbox

@@ -83,7 +83,39 @@ int agentbox_init(const std::string dir) {
         }
     } catch (fs::filesystem_error &e) {
         std::cerr << "Filesystem error: " << e.what() << '\n';
+        return -1;
     }
+
+    std::ofstream config(".agentbox/config.toml");
+
+    if (!config.is_open()) {
+        std::cerr << "Error opening config file.\n";
+        return -1;
+    }
+
+    auto default_config = toml::table{
+        { "project", toml::table{
+                {"default_test", "make test"}
+            }
+        },
+        { "workspace", toml::table{
+                {"worktree_dir", ".agentbox/worktrees"},
+                {"log_dir", ".agentbox/logs"},
+                {"task_dir", ".agentbox/tasks"},
+            }
+        },
+        { "agents", toml::table{
+                {"codex", toml::table{
+                        {"cmd", "codex"},
+                        {"args", toml::array{}},
+                        {"mode", "host"}
+                    }
+                }
+            }
+        },
+    };
+
+    config << default_config;
 
     return 0;
 }

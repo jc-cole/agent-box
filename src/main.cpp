@@ -1,11 +1,13 @@
 
 #include "cli/cli_init.h"
+#include "cli/cli_task.h"
 #include <iostream>
 
 int main(int argc, char **argv) {
     CLI::App app{"agentbox - run coding agents in controlled sandboxes"};
 
     register_init_command(app);
+    register_task_command(app);
 
     try {
         app.parse(argc, argv);

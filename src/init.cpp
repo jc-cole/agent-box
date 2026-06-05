@@ -33,6 +33,7 @@ const auto default_config = toml::table{
     },
 };
 
+
 static int find_repo_root(const fs::path &dir_path, fs::path &repo_root_path) {
 
     std::string command_string = std::format(
@@ -54,6 +55,10 @@ static int find_repo_root(const fs::path &dir_path, fs::path &repo_root_path) {
 
     while (size_t bytes_read = std::fread(buffer, 1, sizeof(buffer), fp)) {
         command_output.append(buffer, bytes_read);
+    }
+
+    if (!command_output.empty() && command_output.back() == '\n') {
+        command_output.pop_back();
     }
 
     int st = pclose(fp);
@@ -89,6 +94,11 @@ static int verify_in_repo(const fs::path &dir, fs::path &repo_root_path, std::os
 }
 
 int verify_init(const std::string dir, std::ostream &output_stream) {
+    std::string repo_root;
+    return verify_init(dir, repo_root, output_stream);
+}
+
+int verify_init(const std::string dir, std::string &repo_root, std::ostream &output_stream) {
     fs::path dir_path = dir;
 
     fs::path repo_root_path;
@@ -98,6 +108,8 @@ int verify_init(const std::string dir, std::ostream &output_stream) {
         output_stream << "hint: run \"agentbox init\" in a valid git repository\n";
         return -1;
     }
+
+    repo_root = repo_root_path.string();
 
     for (const fs::path &dir : init_dirs) {
         if (!fs::exists(dir)) {
@@ -120,7 +132,6 @@ int agentbox_init(const std::string dir) {
     fs::path dir_path = dir;
 
     fs::path repo_root_path;
-
     if (verify_in_repo(dir, repo_root_path, std::cerr) != 0) {
         return -1;
     }

@@ -1,5 +1,5 @@
-# ifndef CLI_INIT_H
-# define CLI_INIT_H
+# ifndef CLI_TASK_H
+# define CLI_TASK_H
 
 #include "task.h"
 #include <CLI11.hpp>

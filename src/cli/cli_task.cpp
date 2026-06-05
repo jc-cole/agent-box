@@ -29,5 +29,9 @@ void register_task_command(CLI::App &app) {
 
     del->add_option("--id", del_opts->id, "Specify the id of the task to delete")->required();
 
+    del->callback([del_opts]() {
+        agentbox_task_delete(del_opts->id);
+    });
+
 
 }

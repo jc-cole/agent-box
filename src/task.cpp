@@ -53,3 +53,34 @@ int agentbox_task_add(std::string &task_id, std::string &prompt) {
     return 0;
 
 }
+
+int agentbox_task_delete(std::string &task_id) {
+    std::string repo_root;
+    if (verify_init(".", repo_root, std::cout) != 0) {
+        return -1;
+    }
+
+    std::set<std::string> task_file_stems;
+
+    fs::path tasks_path(std::format("{}/.agentbox/tasks", repo_root));
+
+    for (const auto &entry : fs::directory_iterator(tasks_path)) {
+        if (fs::is_regular_file(entry.status())) {
+            task_file_stems.insert(entry.path().stem().string());
+        }
+    }
+
+    if (task_file_stems.contains(task_id)) {
+        std::error_code ec;
+        if (fs::remove(std::format("{}/.agentbox/tasks/{}.toml", repo_root, task_id), ec)) {
+            return 0;
+        } else {
+            std::cerr << "filesystem error: " << ec.message() << "\n";
+            return -1;
+        }
+    } else {
+        std::cerr << "error: no task with specified id exists\n";
+        return -1;
+    }
+
+}

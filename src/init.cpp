@@ -138,8 +138,8 @@ int agentbox_init(const std::string dir) {
 
     std::ostream cnull(nullptr); 
     if (verify_init(dir_path, cnull) == 0) {
-        std::cout << "error: agentbox has already been initialized in this repo\n";
-        std::cout << "hint: to re-initialize and delete existing metadata, delete \".agentbox\" first\n";
+        std::cerr << "error: agentbox has already been initialized in this repo\n";
+        std::cerr << "hint: to re-initialize and delete existing metadata, delete \".agentbox\" first\n";
     }
 
 

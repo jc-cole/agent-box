@@ -7,6 +7,7 @@
 # include <filesystem>
 # include <set>
 # include <format>
+# include "worktrees.h"
 
 int agentbox_task_add(std::string &task_id, std::string &prompt);
 

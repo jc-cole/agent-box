@@ -10,8 +10,6 @@
 # include <fstream>
 # include "toml.hpp"
 
-
-
 int verify_init(const std::string dir, std::ostream &output_stream);
 
 int verify_init(const std::string dir, std::string &repo_root, std::ostream &output_stream);

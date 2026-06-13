@@ -41,14 +41,23 @@ int agentbox_task_add(std::string &task_id, std::string &prompt) {
         new_task_id = task_id;
     }
 
-    const auto task_data = toml::table {
+    const auto task_data = toml::table{
         {"id", new_task_id},
         {"prompt", prompt}
     };
 
-    std::ofstream new_task(std::format("{}/.agentbox/tasks/{}.toml", repo_root, new_task_id));
+    std::string new_filename = std::format("{}/.agentbox/tasks/{}.toml", repo_root, new_task_id);
+
+    std::ofstream new_task(new_filename);
+
+    if (!new_task.is_open()) {
+        std::cerr << std::format("filesystem error: failed to make new file \"{}\"\n", new_filename);
+        return -1;
+    }
 
     new_task << task_data;
+
+    
 
     return 0;
 
@@ -56,7 +65,7 @@ int agentbox_task_add(std::string &task_id, std::string &prompt) {
 
 int agentbox_task_delete(std::string &task_id) {
     std::string repo_root;
-    if (verify_init(".", repo_root, std::cout) != 0) {
+    if (verify_init(".", repo_root, std::cerr) != 0) {
         return -1;
     }
 

@@ -1,6 +1,7 @@
 
 #include "cli/cli_init.h"
 #include "cli/cli_task.h"
+#include "worktrees.h"
 #include <iostream>
 
 int main(int argc, char **argv) {
@@ -17,6 +18,8 @@ int main(int argc, char **argv) {
 
         return exit_code;
     }
+
+    create_task_worktree("task-2", "codex");
 
     return 0;
 }

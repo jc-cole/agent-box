@@ -10,8 +10,7 @@ add_executable(agentbox
     src/init.cpp
     src/task.cpp
     src/worktrees.cpp
-    src/cli/cli_task.cpp
-    src/cli/cli_init.cpp
+    src/cli.cpp
 )
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -21,7 +20,6 @@ target_compile_features(agentbox PRIVATE cxx_std_20)
 target_include_directories(agentbox
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/cli
         ${CMAKE_CURRENT_SOURCE_DIR}/external
 )
 

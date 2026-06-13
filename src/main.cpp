@@ -1,6 +1,5 @@
 
-#include "cli/cli_init.h"
-#include "cli/cli_task.h"
+#include "cli.h"
 #include "worktrees.h"
 #include <iostream>
 

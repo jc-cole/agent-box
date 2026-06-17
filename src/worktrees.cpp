@@ -24,16 +24,16 @@ int create_task_worktree(const std::string &task_id, const std::string &agent_id
         current_branch
     );
 
-    FILE *fp = popen(
+    FILE *fp_1 = popen(
         worktree_branch_cmd.c_str(),
         "r"
     );
 
-    if (fp == NULL) {
+    if (fp_1 == NULL) {
         return -1;
     }
 
-    int st = WEXITSTATUS(pclose(fp));
+    int st = WEXITSTATUS(pclose(fp_1));
 
     if (st == 0) {
         return 0;
@@ -41,20 +41,20 @@ int create_task_worktree(const std::string &task_id, const std::string &agent_id
 
     std::string worktree_no_branch_cmd = std::format(
         "git worktree add {} {} 2>&1",
-        target_branch,
-        worktrees_dir
+        worktrees_dir,
+        target_branch
     );
 
-    fp = popen(
-        worktree_branch_cmd.c_str(),
+    FILE *fp_2 = popen(
+        worktree_no_branch_cmd.c_str(),
         "r"
     );
 
-    if (fp == NULL) {
+    if (fp_2 == NULL) {
         return -1;
     }
 
-    st = WEXITSTATUS(pclose(fp));
+    st = WEXITSTATUS(pclose(fp_2));
 
     if (st == 0) {
         return 0;

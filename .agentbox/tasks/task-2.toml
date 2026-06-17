@@ -1,2 +1,2 @@
 id = 'task-2'
-prompt = ''
+prompt = 'create an empty file hello.txt and exit'

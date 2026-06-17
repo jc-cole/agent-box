@@ -51,3 +51,23 @@ void register_task_command(CLI::App &app) {
 
 
 }
+
+typedef struct RunOptions {
+    std::string task_id = "";
+    std::string agent_id = "";
+} RunOptions;
+
+void register_run_command(CLI::App &app) {
+    auto* run = app.add_subcommand("run");
+
+    auto run_opts = std::make_shared<RunOptions>();
+
+    std::string task_id;
+    run->add_option("task_id", run_opts->task_id, "Required task id")->required();
+    std::string agent_id;
+    run->add_option("--agent", run_opts->agent_id, "Required agent id")->required();
+
+    run->callback([run_opts](){
+        agentbox_run(run_opts->task_id, run_opts->agent_id);
+    });
+}

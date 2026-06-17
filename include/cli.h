@@ -3,11 +3,14 @@
 
 #include "init.h"
 #include "task.h"
+#include "run.h"
 #include <CLI11.hpp>
 #include <memory>
 
 void register_init_command(CLI::App &app);
 
 void register_task_command(CLI::App &app);
+
+void register_run_command(CLI::App &app);
 
 # endif

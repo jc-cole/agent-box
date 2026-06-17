@@ -10,6 +10,7 @@ add_executable(agentbox
     src/init.cpp
     src/task.cpp
     src/worktrees.cpp
+    src/run.cpp
     src/cli.cpp
 )
 

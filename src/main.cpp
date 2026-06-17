@@ -8,6 +8,7 @@ int main(int argc, char **argv) {
 
     register_init_command(app);
     register_task_command(app);
+    register_run_command(app);
 
     try {
         app.parse(argc, argv);
@@ -18,7 +19,6 @@ int main(int argc, char **argv) {
         return exit_code;
     }
 
-    create_task_worktree("task-2", "codex");
 
     return 0;
 }

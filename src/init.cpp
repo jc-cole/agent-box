@@ -61,7 +61,7 @@ static int find_repo_root(const fs::path &dir_path, fs::path &repo_root_path) {
         command_output.pop_back();
     }
 
-    int st = pclose(fp);
+    int st = WEXITSTATUS(pclose(fp));
 
 
     if (st == 0) {

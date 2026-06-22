@@ -29,4 +29,5 @@ target_compile_options(agentbox
         -Wall
         -Wextra
         -Wpedantic
+        -g
 )

@@ -2,9 +2,12 @@
 # define WORKTREES_H
 
 # include <string>
+# include "init.h"
 # include <cstdlib>
 # include <format>
 
 int create_task_worktree(const std::string &task_id, const std::string &agent_id);
+
+int delete_task_worktree(const std::string &task_id, const std::string &agent_id);
 
 # endif

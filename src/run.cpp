@@ -67,6 +67,7 @@ int agentbox_run(std::string &task_id, std::string &agent_id) {
 
     if (create_task_worktree(task_id, agent_id) != 0) {
         std::cerr << "error: failed to create worktree for task\n";
+        return -1;
     }
 
     std::string worktree_dir = std::format("{}/.agentbox/worktrees/{}-{}", repo_root, task_id, agent_id);

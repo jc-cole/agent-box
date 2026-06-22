@@ -1,6 +1,6 @@
 [agents.codex]
 args = []
-cmd = 'codex exec --yolo'
+cmd = 'codex'
 mode = 'host'
 
 [project]

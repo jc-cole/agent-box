@@ -1,4 +1,4 @@
 build/*
-agentbox
+.agentbox
 .cache
 compile_commands.json

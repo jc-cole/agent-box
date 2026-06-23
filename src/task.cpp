@@ -1,5 +1,6 @@
 #include "task.h"
 #include "init.h"
+#include "worktrees.h"
 
 namespace fs = std::filesystem;
 
@@ -68,6 +69,8 @@ int agentbox_task_delete(std::string &task_id) {
     if (verify_init(".", repo_root, std::cerr) != 0) {
         return -1;
     }
+
+    delete_task_worktree(task_id, const std::string &agent_id)
 
     std::set<std::string> task_file_stems;
 

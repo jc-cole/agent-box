@@ -21,6 +21,7 @@ target_compile_features(agentbox PRIVATE cxx_std_20)
 target_include_directories(agentbox
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/agentbox
         ${CMAKE_CURRENT_SOURCE_DIR}/external
 )
 

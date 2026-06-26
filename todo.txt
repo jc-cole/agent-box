@@ -1,7 +1,4 @@
-done
-- implement delete_task_worktree, should also delete associated branch
-
 to do
-- add worktree cleanup functionality to task delete_task
-- implement task clean which removes all worktrees work task but keeps task metadata
-- add reset cmd which cleanly removes all metadata, branches, worktrees
+- write header for ConfigStore
+- implement ConfigStore
+- implement Repo

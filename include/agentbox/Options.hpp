@@ -1,19 +1,20 @@
 #pragma once
 
 #include <string>
+#include <filesystem>
 
 typedef struct InitOptions {
-    std::string path = ".";
+    std::filesystem::path path = ".";
 } InitOptions;
 
-typedef struct AddTaskOptions {
+typedef struct TaskAddOptions {
     std::string task_prompt = "";
     std::string id = "";
-} AddTaskOptions;
+} TaskAddOptions;
 
-typedef struct DeleteTaskOptions {
+typedef struct TaskDeleteOptions {
     std::string id = "";
-} DeleteTaskOptions;
+} TaskDeleteOptions;
 
 
 typedef struct RunOptions {

@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <string>
 #include <utility>
+#include <format>
 
 namespace agentbox {
 
@@ -21,15 +22,17 @@ enum class ErrorCode {
     TaskAlreadyExists,
 
     FilesystemError,
-    InternalError
+    InternalError,
+    NotImplementedError
 };
 
 class Error : public std::runtime_error {
     public:
-        Error(ErrorCode code, std::string message)
-            : std::runtime_error(std::move(message)), code_(code) {}
+        Error(ErrorCode code, std::string message): 
+            std::runtime_error(std::move(message)), 
+            code_(code) {}
 
-        ErrorCode code() const {
+        ErrorCode code() const noexcept {
             return code_;
         }
 

@@ -8,6 +8,8 @@
 
 #include "Repo.hpp"
 #include "Options.hpp"
+#include "Error.hpp"
+#include "ProjectConfig.hpp"
 
 namespace agentbox {
 
@@ -25,18 +27,19 @@ class ConfigStore {
         std::vector<Agent> load_agents() const;
         Agent get_agent(const std::string& agent_id) const;
 
-        std::filesystem::path task_dir() const;
-        std::filesystem::path log_dir() const;
-        std::filesystem::path worktree_dir() const;
+        ProjectConfig load() const;
 
         void create_default_config(const InitOptions& opts);
 
     private:
+
+        void verify_config(toml::table& config_table) const;
+
         const Repo& repo_;
+
         const std::string log_dir_key = "log_dir";
         const std::string task_dir_key = "task_dir";
         const std::string worktree_dir_key = "worktree_dir";
-        const std::filesystem::path REPO_CONFIG_PATH = ".agentbox/config.toml";
 };
 
 }  // namespace agentbox

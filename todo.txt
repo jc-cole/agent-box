@@ -1,4 +1,10 @@
 to do
-- write header for ConfigStore
-- implement ConfigStore
-- implement Repo
+- Create ProjectConfig to store config, ConfigStore just reads 
+it/writes
+- Create Layout, which hands out contents of ConfigStore
+to act as central authority on where stuff is
+- Make TaskStore and RunStore headers but don't implement yet
+
+So ProjectConfig depends on ConfigStore and Repo
+ConfigStore depends on repo but just asks for fixed REPO_CONFIG_PATH
+

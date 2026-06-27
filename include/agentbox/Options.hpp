@@ -3,6 +3,8 @@
 #include <string>
 #include <filesystem>
 
+namespace agentbox {
+
 typedef struct InitOptions {
     std::filesystem::path path = ".";
 } InitOptions;
@@ -21,3 +23,5 @@ typedef struct RunOptions {
     std::string task_id = "";
     std::string agent_id = "";
 } RunOptions;
+
+}  // namespace agentbox

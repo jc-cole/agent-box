@@ -9,6 +9,7 @@
 #include "Repo.hpp"
 #include "Options.hpp"
 
+namespace agentbox {
 
 struct Agent {
     std::string id;
@@ -37,3 +38,5 @@ class ConfigStore {
         const std::string worktree_dir_key = "worktree_dir";
         const std::filesystem::path REPO_CONFIG_PATH = ".agentbox/config.toml";
 };
+
+}  // namespace agentbox

@@ -2,6 +2,8 @@
 
 #include <filesystem>
 
+namespace agentbox {
+
 class Repo {
     public:
         explicit Repo(std::filesystem::path start_dir);
@@ -19,3 +21,5 @@ class Repo {
     private:
         std::filesystem::path root_;
 };
+
+}  // namespace agentbox

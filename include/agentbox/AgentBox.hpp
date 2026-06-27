@@ -8,6 +8,8 @@
 #include "TaskStore.hpp"
 #include "WorktreeManager.hpp"
 
+namespace agentbox {
+
 class AgentBox {
     public:
         explicit AgentBox(std::filesystem::path start_dir);
@@ -26,4 +28,4 @@ class AgentBox {
         WorktreeManager worktrees_;
 };
 
-
+}  // namespace agentbox

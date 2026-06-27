@@ -2,6 +2,8 @@
 
 #include <filesystem>
 
+namespace agentbox {
+
 class Git {
     public: 
         explicit Git(std::filesystem::path working_dir);
@@ -21,3 +23,4 @@ class Git {
         std::filesystem::path working_dir_;
 };
 
+}  // namespace agentbox

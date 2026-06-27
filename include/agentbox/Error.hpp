@@ -2,7 +2,9 @@
 
 #include <stdexcept>
 #include <string>
-#include <optional>
+#include <utility>
+
+namespace agentbox {
 
 enum class ErrorCode {
     NotGitRepo,
@@ -22,9 +24,9 @@ enum class ErrorCode {
     InternalError
 };
 
-class AgentBoxError : public std::runtime_error {
+class Error : public std::runtime_error {
     public:
-        AgentBoxError(ErrorCode code, std::string message)
+        Error(ErrorCode code, std::string message)
             : std::runtime_error(std::move(message)), code_(code) {}
 
         ErrorCode code() const {
@@ -34,3 +36,5 @@ class AgentBoxError : public std::runtime_error {
     private:
         ErrorCode code_;
 };
+
+}  // namespace agentbox

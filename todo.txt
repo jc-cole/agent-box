@@ -1,4 +1,3 @@
 to do
-- Create a ProcessRunner abstraction so Git/Others can depend on it and can be swapped out in future
-- should take argument vector, return a ProcessResult
+- implement full ProcessRunner run with fork/exec/wait
 
